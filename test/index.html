@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <title></title>
+        <link rel="stylesheet" type="text/css" href="../dist/animated-click.css" />
+        <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
         <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="../spin.js"></script>
         <script type="text/javascript" src="../animated-click.js"></script>
         <script type="text/javascript">
             function TestController($scope, $q, $timeout) {
@@ -34,7 +37,7 @@
         <div ng-controller="TestController">
             Time to execute in seconds <input ng-model="data.time" />
             <br />
-            <button ng-single-click="wait()">Click</button>
+            <button ng-single-click="wait()" class="btn btn-primary">Click</button>
 
 
              Messages :

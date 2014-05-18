@@ -1,0 +1,102 @@
+$spinnerSize: 32px;
+
+
+/*************************************
+ * MIXINS
+ */
+
+@mixin prefix ( $property, $value ) {
+	-webkit-#{$property}: $value;
+	   -moz-#{$property}: $value;
+	    -ms-#{$property}: $value;
+	     -o-#{$property}: $value;
+	        #{$property}: $value;
+}
+
+@mixin transition( $value ) {
+	-webkit-transition: $value !important; // important to override bootstrap
+	   -moz-transition: $value !important;
+	    -ms-transition: $value !important;
+	     -o-transition: $value !important;
+	        transition: $value !important;
+}
+
+@mixin transform( $value ) {
+	@include prefix( transform, $value );
+}
+
+@mixin transform-origin( $value ) {
+	@include prefix( transform-origin, $value );
+}
+
+
+/*************************************
+ * BUTTON BASE
+ */
+
+.animated-button {
+	position: relative;
+}
+
+
+/* Spinner animation */
+.animated-button .animated-spinner {
+	position: absolute;
+	z-index: 2;
+	display: inline-block;
+	width: $spinnerSize;
+	height: $spinnerSize;
+	top: 50%;
+	margin-top: -$spinnerSize/2;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Button label */
+.animated-button .animated-label {
+	position: relative;
+	z-index: 3;
+}
+
+
+/*************************************
+ * EASING
+ */
+
+.animated-button,
+.animated-button .animated-spinner,
+.animated-button .animated-label {
+	@include transition( 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275) all );
+}
+
+.animated-button,
+.animated-button .animated-spinner,
+.animated-button .animated-label {
+	@include transition( 0.3s ease all );
+}
+
+
+.animated-button {
+	overflow: hidden;
+}
+	.animated-button .animated-spinner {
+		left: 50%;
+		margin-left: -$spinnerSize/2;
+
+		@include transform( scale( 0.2 ) );
+	}
+	.animated-button .animated-label {
+		position: relative;
+		display: inline-block;
+	}
+
+.animated-button[data-loading] .animated-label {
+	opacity: 0;
+
+	@include transform( scale( 2.2 ) );
+}
+.animated-button[data-loading] .animated-spinner {
+	opacity: 1;
+
+	@include transform( none );
+}

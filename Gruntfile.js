@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 	*/
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -40,6 +41,13 @@ module.exports = function(grunt) {
 					dest:   []
 				}
 			},
+            sass:{
+                compile: {
+                files: {
+                    'dist/animated-click.css': 'animated-click.scss'
+                }
+            }
+            },
 			jshint: {
 				options: {
 					//force:          true,
